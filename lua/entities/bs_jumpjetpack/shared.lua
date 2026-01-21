@@ -10,3 +10,8 @@ ENT.Author      = '{toby}'
 ENT.AdminOnly = false
 ENT.Spawnable = true
 ENT.Category = 'Other'
+
+function ENT:SetupDataTables()
+    self:NetworkVar( 'Entity', 0, "EquippedBy" )
+    self:NetworkVar( 'Bool', 1, 'IsThrusting' )
+end
