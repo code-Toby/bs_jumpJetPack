@@ -13,6 +13,7 @@ function ENT:Initialize()
     if ( IsValid( self.phys ) ) then
         self.phys:Wake()
     end
+    self:SetColor(Color(0,0,0))
 
     self.isEquipped = false
     self.equippedBy = nil
@@ -23,7 +24,7 @@ function ENT:Initialize()
     self.ks_canThurstJump = true
     self.ks_charge = 100
     self.ks_landing = false
-
+    
     self.grnd_effectdata = EffectData()
         self.grnd_effectdata:SetScale(200)
         self.grnd_effectdata:SetEntity(self)
@@ -40,8 +41,9 @@ function ENT:Use(activator)
             self:SetParent(self.equippedBy, self.equippedBy:LookupBone('ValveBiped.Bip01_Spine2'))
             self:SetLocalPos(Vector(-7,0,-3))
             self:SetLocalAngles(Angle(0,0,0))
-            
             self:SetSolid(SOLID_NONE)
+            
+            self:SetColor(self.equippedBy:GetWeaponColor():ToColor())
         end
     end
 end
@@ -86,7 +88,6 @@ function ENT:Think()
             end
         end
 
---hd2_jumppack_thrust thrusting effect name
         if self.equippedBy:KeyDown(IN_JUMP) then
             if !self.isInKS then
                 self.thrusting_snd:Play()
@@ -125,18 +126,6 @@ function ENT:Think()
                 util.Effect('ThumperDust', self.grnd_effectdata)
             end
         end
-
-        
-
-        --[[
-        if self.ks_charge == 0 then
-            
-
-            
-            local upVel = self.equippedBy:GetVelocity()[3]
-            self.equippedBy:SetVelocity(Vector(0,0,(upVel*2) / dist))
-        end
-        --]]
     end
 end
 
