@@ -148,6 +148,10 @@ function ENT:OnRemove()
     self.isEquipped = false
     self.equippedBy = nil
 
+    if self.thrusting_snd:IsPlaying() then
+        self.thrusting_snd:Stop()
+    end
+
     if timer.Exists(tostring(self)..'_recharge_thrust') then
         timer.Remove(tostring(self)..'_recharge_thrust')
     end
