@@ -39,11 +39,14 @@ function ENT:Use(activator)
 
             self:SetEquippedBy(self.equippedBy)
             self:SetParent(self.equippedBy, self.equippedBy:LookupBone('ValveBiped.Bip01_Spine2'))
-            self:SetLocalPos(Vector(-7,0,-3))
-            self:SetLocalAngles(Angle(0,0,0))
+            self:SetLocalPos(Vector(0,-5,0))
+            self:SetLocalAngles(Angle(0,90,90))
             self:SetSolid(SOLID_NONE)
-            
+            self:SetMoveType(MOVETYPE_NONE)
+
             self:SetColor(self.equippedBy:GetWeaponColor():ToColor())
+
+            self:AddEffects(EF_FOLLOWBONE) 
         end
     end
 end
