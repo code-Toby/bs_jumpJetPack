@@ -54,9 +54,9 @@ end
 function ENT:Think()
     if self.equippedBy != nil and self.equippedBy:IsPlayer() then
         
-        --if IsValid(AS_IsInCombat) then  IDK HOW TO PROPERLY CHECK FOR FUNCTIONS EXISTING
+        if self.equippedBy.AS_IsInCombat then
             self.isInKS = self.equippedBy:AS_IsInCombat()
-        --end
+        end
 
         self:SetIsThrusting(self.thrusting_snd:IsPlaying())
         self.gndTr = util.TraceLine({
