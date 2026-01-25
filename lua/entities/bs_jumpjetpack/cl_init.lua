@@ -1,5 +1,7 @@
 include('shared.lua')
 
+game.AddParticles( "particles/rockettrail.pcf" )
+PrecacheParticleSystem('rockettrail_airstrike')
 
 function ENT:Think()
     self.equippedBy = self:GetEquippedBy()
@@ -11,19 +13,19 @@ function ENT:Think()
     if self:GetIsThrusting() then
 
         if  self.thrust_eff_l == nil then
-            self.thrust_eff_l = CreateParticleSystem( self, 'Rocket_Smoke', PATTACH_CUSTOMORIGIN)
+            self.thrust_eff_l = CreateParticleSystem( self, 'rockettrail_airstrike', PATTACH_CUSTOMORIGIN)
         end
         if self.thrust_eff_r == nil then
-            self.thrust_eff_r = CreateParticleSystem( self, 'Rocket_Smoke', PATTACH_CUSTOMORIGIN)
+            self.thrust_eff_r = CreateParticleSystem( self, 'rockettrail_airstrike', PATTACH_CUSTOMORIGIN)
         end
 
         if self.thrust_eff_l != nil then
-            self.thrust_eff_l:SetControlPoint(0, self:LocalToWorld(Vector(-2,4.5,-8)))
+            self.thrust_eff_l:SetControlPoint(0, self:LocalToWorld(Vector(-1,4.5,-10)))
             self.thrust_eff_l:SetControlPointForwardVector( 0, -self:GetUp())
         end
 
         if self.thrust_eff_r != nil then
-            self.thrust_eff_r:SetControlPoint(0, self:LocalToWorld(Vector(-2,-4.5,-8)))
+            self.thrust_eff_r:SetControlPoint(0, self:LocalToWorld(Vector(-1,-4.5,-10)))
             self.thrust_eff_r:SetControlPointForwardVector( 0, -self:GetUp())
         end
     else
