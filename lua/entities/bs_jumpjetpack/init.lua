@@ -26,7 +26,7 @@ function ENT:Initialize()
     self.ks_landing = false
     
     self.grnd_effectdata = EffectData()
-        self.grnd_effectdata:SetScale(200)
+        self.grnd_effectdata:SetScale(150)
         self.grnd_effectdata:SetEntity(self)
 end
 
@@ -66,7 +66,7 @@ function ENT:Think()
         })
         self.dist = self.equippedBy:GetPos():Distance(self.gndTr.HitPos)
         self.upVel = -self.equippedBy:GetVelocity()[3]
-        self.grnd_effectdata:SetOrigin( self.gndTr.HitPos )
+        self.grnd_effectdata:SetOrigin( self.gndTr.HitPos + Vector(0,0,50) )
         
         if self.equippedBy:IsOnGround() then
             if self.ks_charge <= 0 then
